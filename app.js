@@ -54,9 +54,7 @@ app.post("/login",function(req,res) {
 				for (let s=0;s<50;s++) {
 					let temp = Math.floor(Math.random()*12);
 					token = token+bits[temp];
-
 				}
-console.log(token);
 				let tempUser= {
 					"username":user.username,
 					"token":token
@@ -65,26 +63,13 @@ console.log(token);
 				return res.status(200).json({
 					"message":"success",
 					"token":token
-
 					})
 			}
 		}
 	}
 	res.status(403).json({"message":"wrong username or password"});
 });
-app.post("/logout",function(req,res){
-let token=req.body.token;
-if(token) {
-	for(let t=0;t<loggedUsers.length;t++){
-if(token === loggedUsers[t].token) {
-	loggedUsers.splice[t,1];
-	break;
-}
 
-	}
-}
-	res.status(200).json({"message":"success"});
-})
 app.get("/api/item", function(req,res) {
 	res.status(200).json(shoppingList);
 });
@@ -119,16 +104,21 @@ app.post("/api/item/:id", function(req,res){
 					"item": req.body.item,
 					"price": req.body.price,
 					"count": req.body.count
-				}
+				}				
 				shoppingList.splice(i,1,tempItem);
 				return res.status(200).json({"message":"success"});
 		}
 	}
-	res.status(200).json({"message":"not found"});
-
-
-
+	res.status(200).json({"message":"not found"});	
+	
+	
+	
 });
 
 app.listen(3001);
 console.log("Running at port 3001");
+
+
+
+
+
